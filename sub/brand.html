@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>레드애플-브랜드</title>
+    <link rel="stylesheet" href="../js/vegas/vegas.min.css">
+    <link rel="stylesheet" href="../css/animate-ex.css">
+    <link rel="shortcut icon"  type="../image/x-icon"  href="../logo_icon.ico">
+
+</head>
+
+<style>
+/*base*/
+body,ul,li,ol,dl,dt,dd,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}    
+body{font:normal 12px "나눔고딕", "Malgun Gothic", serif;}
+ul{list-style: none;}
+img{border:0;vertical-align:top;}
+a{text-decoration: none;} 
+
+#wrap{width:100%;overflow:hidden;}
+
+/*header*/
+
+.header{width:100%; height:170px; float:left; position:absolute; z-index:3; }
+.header .header_logo{width:30%; height:70px; float:left; margin: 10px;}
+.header .header_menu{width:56%; height:70px; float:left; margin: 2px;}
+.header .header_menu .gnb{width:600px; height:90px; float:left;}
+.header .header_menu .gnb>li{float:left;margin-right:40px;line-height:80px;}
+.header .header_menu .gnb>li:nth-child(1){margin-left:30px;}
+.header .header_menu .gnb>li>a{color:#000;font-size:16px;font-weight: bold;}
+.header .header_sns{width:10%; height:90px; float:left;}
+.header .header_sns .gnb2{float:left; margin-top:20px;} 
+.header .header_sns .gnb2>li{float:left;margin-right:10px;}
+
+/*contents*/
+.box1{width:100%; overflow:hidden; margin-top:50px;}
+.box1 .cont1{width:100%; height:400px;background: url(../images/cont5-1.png) no-repeat;}
+.box1 .cont1 h2{text-align: center; font-size:40px; margin:50px; padding-top:130px;color:#fff; }
+.box1 p{text-align: center;font-size:18px;margin-bottom:10px;color:#fff;font-weight: bold; }
+
+.box1 .tab_menu{}
+.box1 .tab_menu .tab_btn{width:100%;height:55px;background:rgba(0,0,0,0.5);z-index: 3;position:absolute;top:473px;left:50%;transform: translate(-50%,-50%);}
+.box1 .tab_menu .tab_btn li{float:left;width:33%;height:50px;text-align: center;line-height: 1.5; padding-top:10px ;}
+.box1 .tab_menu .tab_btn li a{font-size:20px;color:#fff;}
+.box1 .tab_menu .tab_btn li:hover a{color:red; transition: 0.8s;}
+.box1 .tab_menu .tab_btn li.active a{text-decoration: underline;color:red;}
+
+.box1 .tab_cont{width:100%; overflow:hidden; margin-top:50px;}
+.box1 .tab_cont .tab1 h3{font-size:30px; text-align: center; padding-top: 30px;}
+.box1 .tab_cont .tab1 .line{width:1100px;border:solid 1px #999;  margin:50px auto;}
+
+.box1 .tab_cont .cont1-1{width:50%; float:left;}
+.box1 .tab_cont .cont1-1 img{margin-left:20%; margin-bottom: 200px;}
+.box1 .tab_cont .cont1-2{width:50%; float:left; margin-top:100px; }
+.box1 .tab_cont .cont1-2 p{text-align:left; color:#666; font-size: 16px; line-height: 1.8; margin-bottom: 10px;}
+.box1 .tab_cont .cont1-2 .en{font-size: 20px; color:darkgoldenrod;}
+.box1 .tab_cont .cont1-2 .red{font-size: 30px;color:red;font-weight: bold;}
+.box1 .tab_cont .cont1-2 span{font-weight:bold; color:black;}
+
+
+.box1 .tab_cont .tab2 h3{font-size:30px; text-align: center; padding-top: 30px;}
+.box1 .tab_cont .tab2 .line{width:1100px;border:solid 1px #999;  margin:50px auto;}
+.box1 .tab_cont .tab2 .cont2-1{width:1100px; margin:40px auto;}
+.box1 .tab_cont .tab2 img{margin-left:5px; margin-bottom: 200px;}
+
+.box1 .tab_cont .tab3{}
+.box1 .tab_cont .tab3 h3{font-size:30px; text-align: center; padding-top: 30px;}
+.box1 .tab_cont .tab3 .line{width:1100px;border:solid 1px #999;  margin:50px auto;}
+.box1 .tab_cont .tab3 .map{width:1030px; height:390px; text-align:center; margin:10px auto;background:#666; padding-top: 10px;}
+.box1 .tab_cont .tab3 .ad{width:1030px; height:40px; margin:10px auto;}
+.box1 .tab_cont .tab3 .ad li{font-size: 16px; color:#666; float:left; text-align:center; margin:20px 30px; line-height:50px;}
+.box1 .tab_cont .tab3 .ad li:nth-child(1){margin-left:150px;}
+.box1 .tab_cont .tab3 .ad img{margin-bottom: 200px;}
+
+/*footer*/
+.footer{width:100%;height:100px;background:#555;}
+.footer div{width:1100px; height:200px; margin:0 auto;}
+.footer ul{width:1200px; height:50px; text-align:left; float:left; }
+.footer ul li{float:left; margin:15px; color:#fff; }
+.footer ul .img{}
+.footer ul .text1{float:left; font-size:13px; line-height: 1.8; margin:20px 20px;}
+.footer ul .text2 a{float:left; font-size:13px; color:#fff; margin-top:8px;}
+.footer ul .text2 a:hover{float:left; font-size:13px; text-decoration:underline;}
+</style>
+<script src="../js/jquery-1.10.2.min.js"></script>
+<script>
+$(function(){
+
+ var tabBtn=$(".tab_btn>ul>li");  // tab_btn  li 클릭했을때
+ var tabCont=$(".tab_cont>div");  //tab_cont div 펼쳐보일때 보이는 내용
+
+ tabCont.hide().eq(0).show();  //박스전체 숨긴후 첫번째 박스만 보여주기
+
+ tabBtn.click(function(e){  //tab 버튼을 클릭했을때
+  e.preventDefault();  //클릭했을때 위로 올라가지 않게 클릭방지
+  var target=$(this); //버튼을 클릭했을때 어떤거를 클릭할줄 모르니 이벤트가 발생한 곳
+  var index=target.index(); //몇번째 버튼을 클릭했는지 모르니 인덱스번호로
+  tabBtn.removeClass("active");  //활성되있는 버튼 외는 지우기
+  target.addClass("active");  //타겟 클릭된 부분을 추가보여줌
+  tabCont.css("display","none");  //클릭된 부분외 문장은 숨기고
+  tabCont.eq(index).css("display","block"); //클릭된 부부만 보여주기
+ });
+
+});    
+</script>
+<body>
+<div id="wrap">    
+
+    <header class="header">
+        <div class="header_logo">
+            <h1><a href="../index.html"><img src="../images/logo.png"></a></h1>
+        </div>   
+        <div class="header_menu">
+         <ul class="gnb">
+             <li class="on"><a href="brand.html">BRAND</a></li>
+             <li><a href="franchise.html">FRANCHISE</a></li>
+                <li><a href="menu.html">MENU</a></li>
+                <li><a href="store.html">STORE</a></li>
+                <li><a href="community.html">COMMUNUTY</a></li>   
+         </ul>
+        </div>       
+        <div class="header_sns">
+           <ul class="gnb2">
+             <li><a href="https://www.instagram.com/redapple_coffee/"><img src="../images/sns_instagram.png" alt="instagram"></a></li>
+             <li><a href="https://www.facebook.com/redapplecoffeecom/"><img src="../images/sns_facebook.png" alt="facebook"></a></li>
+           </ul>
+        </div>
+    </header>  
+
+
+
+
+    <div class="box1">
+     <div class="cont1">
+         <h2>BRAND</h2>
+         <p>레드애플이 선사하는 프리미엄 페스츄리 애플파이와<br>
+         스페셜티 커피를 만나보세요.</p>
+     </div><!--cont1/--> 
+
+    
+     <div class="tab_menu">
+         <div class="tab_btn">
+         <ul>
+          <li class="active"><a href="#">브랜드 소개</a></li>   
+          <li><a href="#">BI</a></li>   
+          <li><a href="#">찾아오시는길</a></li>   
+         </ul>
+         </div> <!--tab_btn/--> 
+     </div><!--tab_menu/--> 
+
+
+     <div class="tab_cont">
+      <div class="tab1">
+         <h3>브랜드 소개</h3>
+         <p class="line"></p>
+         
+         <div class="cont1-1"><img src="../images/about.jpg"></div><!--cont1-1/--> 
+
+         <div class="cont1-2">
+         <p class="en">Korea's first handmade apple pie restaurant</p>
+         <p class="red">국내 최초 애플파이 전문 스토어</p>
+         <p>오랜 기간의 연구와 테스트를 통해 최상의 맛으로 만들어낸 특별한 애플파이는<br>
+             레드애플이라는 애플파이 전문점으로 탄생하게 되었습니다.<br><br></p>
+         <p><span>레드(열정), 골드(고급스러움), 화이트(정직한)</span>를 경영이념으로 열정을 가지고<br>
+         <span>최고급 디저트를 정직하게 만들겠다는 뜻</span>으로 이루어져 있습니다.</p></div><!--cont1-2/--> 
+     </div><!--tab1/--> 
+
+     <div class="tab2">
+         <h3>BI</h3>
+         <p class="line"></p>
+         <div class="cont2-1"><img src="../images/bi_img.JPG"></div>
+     </div><!--tab2/-->
+
+     <div class="tab3">
+         <h3>찾아오시는길</h3>
+         <p class="line"></p>
+         <div class="map">
+         <iframe src="https://www.google.com/maps/embed?pb=!1m20!1m12!1m3!1d8935.550824713608!2d127.03873299521177!3d37.64463602883189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m5!3e6!4m1!2z7J247LKcIOyEnOq1rCDshozri7Qy66GcIDUx!4m1!2z7J247LKcIOyEnOq1rCDshozri7Qy66GcIDUx!5e0!3m2!1sko!2skr!4v1655098103012!5m2!1sko!2skr" width="1000" height="380" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+         <div class="ad">
+         <ul>
+          <li class="item"><img src="../images/loc_addr.png" alt=""> <span>주소 &nbsp;:&nbsp; 인천 서구 소담2로 51</span>
+		  <li class="item"><img src="../images/loc_tel.png" alt=""> <span> Tel &nbsp;:&nbsp; 1644-0379</span>
+		  <li class="item"><img src="../images/loc_fax.png" alt=""> <span> Fax &nbsp;:&nbsp; 032-568-1321</span>
+         </ul>
+         </div><!--ad/-->
+      </div><!--tab3/-->      
+     </div><!--tab_cont/-->
+    </div><!--box1/-->    
+
+
+    <footer class="footer">
+    <div>
+     <ul>
+         <li class="img"><img src="../images/f_logo.png"><li>   
+         <li class="text1">상호 : (주)레드애플 대표자 : 유태익 주소 : 인천 서구 소담2로 51 Tel : 1644-0379 Fax : 032-568-1321<br>
+         Copyright © 2020 REDAPPLE. All Rights Reserved.</li>
+         <li class="text2"><a href="#">개인정보취급방침</a></li>
+         <li class="text2"><a href="#">이메일무단수집거부</a></li>
+     </ul> 
+    </div>
+    </footer>
+   
+</div><!--wrap/-->    
+</body>
+</html>

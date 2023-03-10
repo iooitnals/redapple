@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>레드애플</title>
+<link rel="stylesheet" href="js/vegas/vegas.min.css">
+<link rel="stylesheet" href="css/animate-ex.css">
+<link rel="shortcut icon"  type="image/x-icon"  href="logo_icon.ico">
+
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.scrollTo.min.js"></script>
+<script src="js/vegas/vegas.min.js"></script>
+<script src="js/jssor.slider-27.5.0.min.js"></script> <!--page5 slide-->
+<script src="js/wow.js"></script> 
+
+<!--mousewheel-->
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/prefixfree.min.js"></script>
+<script src="js/jquery.mousewheel.min.js"></script>
+
+
+
+<script>
+$(function(){
+
+//변수 ht에 브라우저의 높이값을 저장
+var ht = $(window).height();	
+	//브라우저의 높이값을 section의 높이값으로 지정
+	$("section").height(ht);
+	
+	//브라우저가 리사이즈 될 때마다 브라우저와 section의 높이값을 갱신
+	$(window).on("resize",function(){
+		var ht = $(window).height();	
+		$("section").height(ht);
+	});
+    
+
+
+    
+//section위에서 마우스 휠을 움직이면
+$("section").on("mousewheel",function(event,delta){    
+		
+		//마우스 휠을 올렸을때	
+          if (delta > 0) {  
+			//변수 prev에 현재 휠을 움직인 section에서 이전 section의 offset().top위치 저장
+             var prev = $(this).prev().offset().top;
+			 //문서 전체를 prev에 저장된 위치로 이동
+			 $("html,body").stop().animate({"scrollTop":prev},500);
+			 
+		//마우스 휠을 내렸을때	 
+          }else if (delta < 0) {  
+			//변수 next에 현재 휠을 움직인 section에서 다음 section의 offset().top위치 저장
+			 var next = $(this).next().offset().top;
+			 //문서 전체를 next에 저장된 위치로 이동
+			 $("html,body").stop().animate({"scrollTop":next},500);                                         
+          }          
+ });
+
+
+
+
+ /* 스크롤 부드럽게 
+ $('nav a, .dott a').click(function(e){
+	$.scrollTo(this.hash || 0, 300);
+	e.preventDefault();
+});
+*/
+
+
+/* menu li on */
+$(window).on("scroll",function(){	
+	
+    //변수 ht에 현재 브라우저의 넓이값 저장
+    var ht = $(window).height();
+    
+    //변수 scroll에 현재 문서가 스크롤된 거리 저장
+    var scroll = $(window).scrollTop();
+    
+            
+    for(var i=0; i<5;i++){
+        if(scroll>=ht*i && scroll< ht*(i+1)){
+            $(".gnb>li").removeClass();
+            $(".gnb>li").eq(i).addClass("on");
+        };
+    }								
+});
+
+
+//page5 slide
+jQuery(document).ready(function ($) {
+
+var jssor_1_options = {
+  $Idle: 2000,
+  $SlideEasing: $Jease$.$InOutSine,
+  $DragOrientation: 3,
+  $ArrowNavigatorOptions: {
+    $Class: $JssorArrowNavigator$
+  },
+  $BulletNavigatorOptions: {
+    $Class: $JssorBulletNavigator$
+  }
+};
+
+var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+//make sure to clear margin of the slider container element
+jssor_1_slider.$Elmt.style.margin = "";
+
+
+var MAX_WIDTH = 3000;
+var MAX_HEIGHT = 3000;
+var MAX_BLEEDING = 1;
+
+function ScaleSlider() {
+    var containerElement = jssor_1_slider.$Elmt.parentNode;
+    var containerWidth = containerElement.clientWidth;
+
+    if (containerWidth) {
+        var originalWidth = jssor_1_slider.$OriginalWidth();
+        var originalHeight = jssor_1_slider.$OriginalHeight();
+
+        var containerHeight = containerElement.clientHeight || originalHeight;
+
+        var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+        var expectedHeight = Math.min(MAX_HEIGHT || containerHeight, containerHeight);
+
+        //scale the slider to expected size
+        jssor_1_slider.$ScaleSize(expectedWidth, expectedHeight, MAX_BLEEDING);
+
+        //position slider at center in vertical orientation
+        jssor_1_slider.$Elmt.style.top = ((containerHeight - expectedHeight) / 2) + "px";
+
+        //position slider at center in horizontal orientation
+        jssor_1_slider.$Elmt.style.left = ((containerWidth - expectedWidth) / 2) + "px";
+    }
+    else {
+        window.setTimeout(ScaleSlider, 30);
+    }
+}
+
+function OnOrientationChange() {
+    ScaleSlider();
+    window.setTimeout(ScaleSlider, 800);
+}
+
+ScaleSlider();
+
+$(window).bind("load", ScaleSlider);
+$(window).bind("resize", ScaleSlider);
+$(window).bind("orientationchange", OnOrientationChange);
+/*#endregion responsive code end*/
+});
+
+
+}); //function end
+</script>
+<style>
+/*base*/
+body,ul,li,ol,dl,dt,dd,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}    
+body{font:normal 12px "맑은고딕", "Malgun Gothic", serif;}
+ul{list-style: none;}
+img{border:0;vertical-align:top;}
+a{text-decoration: none;} 
+
+#wrap{width:100%;overflow:hidden;}
+
+/*header*/
+
+.header{width:100%; height:170px; float:left; position:absolute; z-index:3; }
+.header .header_logo{width:30%; height:70px; float:left; margin: 10px;}
+.header .header_menu{width:56%; height:70px; float:left; margin: 2px;}
+.header .header_menu .gnb{width:600px; height:90px; float:left;}
+.header .header_menu .gnb>li{float:left;margin-right:40px;line-height:80px;}
+.header .header_menu .gnb>li:nth-child(1){margin-left:30px;}
+.header .header_menu .gnb>li>a{color:#000;font-size:16px;font-weight: bold;}
+.header .header_sns{width:10%; height:90px; float:left;}
+.header .header_sns .gnb2{float:left; margin-top:20px;} 
+.header .header_sns .gnb2>li{float:left;margin-right:10px;}
+
+
+section{width:100%;overflow: hidden; position:relative;}
+
+.page0{background:#fff;}
+.page1{background:#eee;}
+.page2{background:#fff;}
+.page3{background:#eee;}
+.page4{background:#fff;}
+.page5{background:url(images/cont5.png) no-repeat center;background-size:cover;}
+.page9{background:url(images/bg03.jpg) no-repeat center;background-size:cover;}
+
+
+/*visual*/
+.page0 {width:100%; margin:0 auto; margin-top: 90px;}
+.page0 img{width:1100px;}
+
+
+/*BRAND STORY*/
+.page1 #page1{position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);text-align:center;line-height:2;}
+.page1 #page1 h2{margin-bottom:30px; font-size:34px;color:#000;font-weight:bold;}
+.page1 #page1 h2 span{color:red;}
+.page1 #page1 p.p1_btn{position:absolute; top:66%;left:50%;transform: translate(-50%,-50%);text-align:center; margin-top:10px;z-index:2;}
+.page1 #page1 p.p1_btn a{ top:300px; color:#fff;border:1px solid #fff;display: inline-block;width:110px;height:28px;line-height:26px; font-size:14px;}
+.page1 #page1 p.p1_btn a:hover{background:red;border:1px solid red;  transition: all 0.8s;}
+
+/*VIDEO*/
+.page2 #page2{text-align:center;}
+.page2 #page2 h2{position:absolute;top:10%;left:50%;transform:translate(-50%,-50%);font-size:34px;color:#000;font-weight:bold;}
+.page2 #page2 h2 span{color:red;}
+.page2 #page2 .box2{width:1100px;height:580px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);padding:10px;box-sizing:border-box;}
+.page2 #page2 .box2 div{float:left;width:518px;height:260px;margin-top:4px;background:pink;}
+.page2 #page2 .box2 div.page2_in1,.page2_in3{margin-right:20px;}
+.page2 #page2 .box2 div.page2_in1,.page2_in2{margin-bottom:26px;}
+.page2 #page2 .box2 p{font-size:12px; font-weight: bold; color:#555; line-height:1.2; margin:2px;}
+
+.page2 #page2 .box2 div.page2_in1 iframe{width:518px;height:260px;}
+.page2 #page2 .box2 div.page2_in2 iframe{width:518px;height:260px;}
+.page2 #page2 .box2 div.page2_in3 iframe{width:518px;height:260px;}
+.page2 #page2 .box2 div.page2_in4 iframe{width:518px;height:260px;}
+
+/*FRANCHISE*/
+.page3 #page3{text-align:center;}
+.page3 #page3 h2{position:absolute;top:10%;left:50%;transform:translate(-50%,-50%);font-size:34px;color:#000;font-weight:bold;}
+.page3 #page3 .box3{width:1100px;height:540px;background:rgba(0,0,0,0.2);position:absolute;top:50%;left:50%;transform:translate(-50%,-47%);padding:20px;box-sizing:border-box;}
+.page3 #page3 .box3 .page3_in1 {position:absolute; width:736px; height:500px; background:hotpink;}
+.page3 #page3 .box3 .page3_in2 {position:absolute; top:0px; left:760px; width:300px; height:160px; }
+.page3 #page3 .box3 .page3_in3 {position:absolute; top:170px; left:760px; width:300px; height:160px;cursor: pointer; }
+.page3 #page3 .box3 .page3_in4 {position:absolute; top:340px; left:760px; width:300px; height:160px;cursor: pointer; }
+.page3 #page3 .box3 img{width:100%;}
+
+/*MENUE*/
+.page4 #page4{text-align:center;}
+.page4 #page4 h2{position:absolute;top:10%;left:50%;transform:translate(-50%,-50%);font-size:34px;color:#000;font-weight:bold;}
+.page4 #page4 .box4{width:1100px;height:500px;background:white;position:absolute;top:50%;left:50%;transform: translate(-50%,-47%);padding:20px;box-sizing:border-box;}
+.page4 #page4 .box4 .page4_in1{width:340px; height:448px; float:left; margin-right:20px; background: pink;}
+.page4 #page4 .box4 .page4_in2{width:340px; height:448px; float:left; margin-right:20px; background: pink;}
+.page4 #page4 .box4 .page4_in3{width:340px; height:448px; float:left; margin-right:0px; background: pink;}
+.page4 #page4 .box4 img{width:100%}
+.page4 #page4 .box4 h3{position:absolute;top:40%;left:50%;transform:translate(-50%,-50%); text-align: center; color:#fff; font-size:20px;}
+.page4 #page4 .box4 h3 .en{font-size:14px; color:rgba(255,255,255,0.5)}
+.page4 #page4 p.p1_btn a{position:absolute;top:48%;left:50%; transform:translate(-50%,-50%);top:280px;color:#fff;border:1px solid #fff;display:inline-block;width:110px;height:26px;line-height:26px;font-size:14px;}
+.page4 #page4 p.p1_btn a:hover{background:red;border:1px solid red; transition: all 0.8s;}
+
+.page4 #page4 .box4 li{border:1px solid #fff;width:340px;overflow: hidden;position:relative;}
+.page4 #page4 .box4 li:hover .photo{width:340px; transition: all 0.5s;}  
+.page4 #page4 .box4 li:hover .photo{transform:scale(1.3);}
+
+/*FRANCHISE*/
+.page5 #page5{width:100%;}
+.page5 #page5 h2{font-size:32px;color:#fff;}
+.page5 #page5 p{font-size:18px;color:#fff;}
+.page5 #page5 .box5-1{width:90%; height:50%; padding:50px; text-align:right; }
+.page5 #page5 .box5-2{width:90%; height:50%; padding:50px; position:absolute;top:56%; text-align:left; }
+
+/*FRESH INGREDIENTS*/
+.page6 #page6{text-align:center;}
+.page6 #page6 h2{position:absolute;top:10%;left:50%;transform:translate(-50%,-50%);font-size:34px;color:#000;font-weight:bold;}
+.page6 #page6 h2 span{color:red;}
+.page6 #page6 .box6{width:1100px;height:460px;position:absolute;top:56%;left:50%;transform:translate(-50%,-50%);padding:10px;box-sizing:border-box;} 
+.page6 #page6 .box6 ul{width:30%; height::30%; float:left; margin-left:30px; background: blue;}
+.page6 #page6 .box6 li img{width:100%;}
+.page6 #page6 .box6 ul h3{font-size:20px; color:#fff; text-align:center; margin-top: -70px;}
+
+.page6 #page6 .box6 .page6_in1{margin-right:2%;}
+.page6 #page6 .box6 .page6_in2{margin-right:2%;}
+.page6 #page6 .box6 .page6_in3{margin-right:2%;}
+
+/*가맹문의 공지사항*/
+.page7 #page7{width:100%;height:300px; margin:0 auto; background:#fff;}
+.page7 #page7 .box7-1{width:100%; height:400px; margin:0 auto; background:url(images/cont5-2.png)center;background-size:cover;}
+.page7 #page7 .box7-1 img{position:absolute;top:150px;left:50%;transform:translate(-50%,-50%); margin-top:50px; text-align: center; background: pink;}
+
+.page7 #page7 .box7-2{width:1100px; height:200px; margin:0 auto; padding-top: 100px;}
+.page7 #page7 .box7-2 ul{float:left; margin:10px; text-align: center;}
+.page7 #page7 .box7-2 ul li{width:250px;}
+.page7 #page7 .box7-2 ul li img{width:100px; }
+.page7 #page7 .box7-2 ul .text1{font-size:18px; font-weight: bold; color:#555; padding-top:20px;}
+.page7 #page7 .box7-2 ul .text2{font-size:15px; font-weight: bold; color:#555; padding-top:10px;}
+.page7 #page7 .box7-2 ul li .link_img{ transition: all 0.7s;}
+.page7 #page7 .box7-2 ul li:hover .link_img{transform:translateY(10px);}
+
+
+/*footer*/
+.footer{width:100%;height:100px;background:#555;}
+.footer div{width:1100px; height:200px; margin:0 auto;}
+.footer ul{width:1200px; height:50px; text-align:left; float:left; }
+.footer ul li{float:left; margin:15px; color:#fff; }
+.footer ul .img{}
+.footer ul .text1{float:left; font-size:13px; line-height: 1.8; margin:20px 20px;}
+.footer ul .text2 a{float:left; font-size:13px; color:#fff; margin-top:8px;}
+.footer ul .text2 a:hover{float:left; font-size:13px; text-decoration:underline;}
+
+</style>
+</head>
+<body>
+<div id="wrap">    
+ 
+
+<header class="header">
+    <div class="header_logo">
+        <h1><img src="images/logo.png"></h1>
+    </div>   
+    <div class="header_menu">
+     <ul class="gnb">
+         <li class="on"><a href="#sec1">BRAND</a></li>
+         <li><a href="#sec3">FRANCHISE</a></li>
+            <li><a href="#sec4">MENU</a></li>
+            <li><a href="#sec5">STORE</a></li>
+            <li><a href="#sec7">COMMUNUTY</a></li>   
+     </ul>
+    </div>       
+    <div class="header_sns">
+       <ul class="gnb2">
+        <li><a href="https://www.instagram.com/redapple_coffee/"><img src="images/sns_instagram.png" alt="instagram"></a></li>
+        <li><a href="https://www.facebook.com/redapplecoffeecom/"><img src="images/sns_facebook.png" alt="facebook"></a></li>
+       </ul>
+    </div>
+</header>
+
+
+ <section id="sec0" class="page0">
+    <div id="page0">
+      <div class="wow fadeInUp"> <!--<img src="images/visual1.jpg" class="visual">/--> </div>  
+    </div> 
+ </section><!--page0/-->
+
+
+ <section id="sec1" class="page1">
+  <div id="page1">
+    <h2>REDAPPLE <span>BRAND STORY</span></h2>
+    <p class="p1_btn"><a href="sub/brand.html">VIEW MORE + </a></p>
+   <div class="wow fadeInUp"> 
+    <img src="images/cont1.png">   
+   </div>  
+  </div>
+ </section><!--page1/-->
+
+
+ <section id="sec2" class="page2">
+  <div id="page2">
+   <h2>REDAPPLE <span>VIDEO</span></h2>
+    <div class="box2">
+    <div class="page2_in1 wow fadeInDown" data-wow-delay="0.3s">
+        <iframe width="950" height="462" src="https://www.youtube.com/embed/fWbftpSYtzI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+        <p>애플파이 제작 영상</p></div>
+    <div class="page2_in2 wow fadeInDown" data-wow-delay="0.3s">
+        <iframe width="950" height="462" src="https://www.youtube.com/embed/ua7dUuh2Wfc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
+        <p>ETN 언니스투어 방송촬영</p></div>
+    <div class="page2_in3 wow fadeInDown" data-wow-delay="0.9s">
+        <iframe width="821" height="462" src="https://www.youtube.com/embed/ryBtFbVo_Qc" title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>유튜버 입짧은햇님 방송 영상</p></div>
+    <div class="page2_in4 wow fadeInDown" data-wow-delay="0.9s">
+        <iframe width="821" height="462" src="https://www.youtube.com/embed/71as0sVRc8o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>유튜버 [빵튜브] 뽀니 방송 영상</p></div>
+    </div>   
+  </div>
+ </section><!--page2/-->
+
+
+
+ <section id="sec3" class="page3">
+  <div id="page3">
+   <h2>FRANCHISE</h2> 
+   <div class="box3">
+    <div class="page3_in1">
+
+        <div style="position:relative;top:0;left:0;width:100%;height:100%;overflow:hidden;">
+            <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:736px;height:500px;overflow:hidden;visibility:hidden;">
+                <!-- Loading Screen -->
+                <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+                    <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />
+                </div>
+                <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:736px;height:500px;overflow:hidden;">
+                    <div data-p="267"> <img data-u="image" src="images/gallery_1.jpg"/> </div>
+                    <div data-p="267"> <img data-u="image" src="images/gallery_2.jpg"/> </div>
+                    <div data-p="267"> <img data-u="image" src="images/gallery_3.jpg"/> </div>
+    
+   
+                <!-- Arrow Navigator -->
+                <div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:250px;left:10px;" data-autocenter="3" data-scale="0.75" data-scale-left="0.75">
+                    <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                        <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+                    </svg>
+                </div>
+                <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:250px;right:10px;" data-autocenter="3" data-scale="0.75" data-scale-right="0.75">
+                    <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                        <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <div class="page3_in2"><a href="sub/franchise.html"><img src="images/cont3_01.gif"></a></div>
+    <div class="page3_in3"><a href="sub/franchise.html"><img src="images/cont3_02.gif"></a></div>
+    <div class="page3_in4"><a href="sub/franchise.html"><img src="images/cont3_03.gif"></a></div>
+   </div>  
+  </div>   
+  </section><!--page3/-->
+
+
+ <section id="sec4" class="page4">
+   <div id="page4">
+    <h2>MENU</h2>
+     <div class="box4">
+       <div class="page4_in1 wow fadeInUp" data-wow-delay="0.3s">
+        <ul>
+         <li><img src="images/menu_1.jpg" class="photo">
+         <h3>패스츄리 애플파이<br><span class="en">Pasty Applepie</span></h3>
+         <p class="p1_btn"><a href="sub/menu.html">VIEW MORE + </a></p></li>
+        </ul>
+       </div>
+       <div class="page4_in2 wow fadeInUp" data-wow-delay="0.6s">
+        <ul>
+         <li><img src="images/menu_2.jpg" class="photo">
+         <h3>커피 & 음료<br><span class="en">Coffee & Beverage</span></h3>
+         <p class="p1_btn"><a href="sub/menu.html">VIEW MORE + </a></p></li>
+        </ul>
+       </div>
+       <div class="page4_in3 wow fadeInUp" data-wow-delay="0.9s">
+        <ul>
+         <li><img src="images/menu_3.jpg" class="photo">
+         <h3>디 저 트<br><span class="en">Dessert</span></h3>
+         <p class="p1_btn"><a href="sub/menu.html">VIEW MORE + </a></p></li>
+        </ul>
+       </div>
+     </div>   
+   </div>
+ </section><!--page4/-->
+
+
+
+
+ <section id="sec5" class="page5">
+  <div id="page5">
+   <div class="box5-1 wow fadeInLeft" data-wow-delay="0.6s">
+    <h2>수제 페스츄리<br>
+        국내산 생사과<br>
+        신선한 재료</h2>
+       <p class="wow fadeInLeft" data-wow-delay="0.9s"><br>프리미엄 버터를 사용해 직접 만든 수제 페스츄리 속에 <br>
+          국내산 생사과와 바닐라크림을 넣어 <br>
+          바삭하고 달콤하며 부드러운 맛의 조화가 일품입니다.</p>
+   </div>
+   <div class="box5-2 wow fadeInRight" data-wow-delay="1.6s">
+    <h2>프리미엄 원두<br>
+        합리적인 가격<br>
+        모든 음료 벤티사이즈</h2>
+       <p  class="wow fadeInRight" data-wow-delay="2.0s"><br>레드애플 프리미엄 스페셜티 커피는 묵직한 바디감과 <br>
+        카라멜의 단맛의 조합이 굉장히 좋은 밸런스를 유지해주며 <br>
+        깔끔하게 떨어지는 맛의 느낌이 훌륭합니다.</p>
+    </div>
+  </div>
+ </section><!--page5/-->
+
+
+
+ <section id="sec6" class="page6">
+    <div id="page6">
+        <h2>REDAPPLE’S <span>FRESH INGREDIENTS</span></h2>
+      <div class="box6">
+        <div class="page6_in1 wow bounceInUp" data-wow-delay="0.5s">
+         <ul>
+         <li><img src="images/item_1.jpg"></li>
+         <h3>프리미엄 버터</h3>
+         </ul>
+
+        </div>
+
+        <div class="page6_in2 wow bounceInUp" data-wow-delay="1.0s">
+         <ul>
+          <li><img src="images/item_2.jpg"></li>
+          <h3>100% 국내산 생사과</h3>
+         </ul>
+        </div>
+
+        <div class="page6_in3 wow bounceInUp" data-wow-delay="1.5s">
+         <ul>
+          <li><img src="images/item_3.jpg"></li>
+          <h3>신선한 원두</h3>
+         </ul>
+        </div>
+      </div>   
+    </div>
+  </section><!--page6/-->
+
+
+
+ <section id="sec7" class="page7">
+  <div id="page7">
+    <div class="box7-1"><a href="#"><img src="images/link.jpg"></a></div><!--7-1/-->
+
+    <div class="box7-2">
+    <ul>
+      <li><a href="sub/community.html"><img src="images/link_icon1.png" class="link_img"></a></li>
+      <li class="text1">공지사항</li>
+      <li class="text2">Notice</li>
+    </ul>
+
+    <ul>
+      <li><a href="sub/community.html"><img src="images/link_icon2.png" class="link_img"></a></li>
+      <li class="text1">이벤트</li>
+      <li class="text2">Event</li>
+    </ul>
+
+    <ul>
+      <li><a href="sub/community.html"><img src="images/link_icon3.png" class="link_img"></a></li>
+      <li class="text1">가맹주자료실</li>
+      <li class="text2">Data</li>
+    </ul>
+
+    <ul>
+      <li><a href="sub/community.html"><img src="images/link_icon4.png" class="link_img"></a></li>
+      <li class="text1">매장찾기</li>
+      <li class="text2">Shop</li>
+    </ul> 
+    </div><!--7-2/-->
+ </section><!--page7/-->
+
+
+ <footer class="footer">
+  <div>
+   <ul>
+       <li class="img"><img src="images/f_logo.png"><li>   
+       <li class="text1">상호 : (주)레드애플 대표자 : 유태익 주소 : 인천 서구 소담2로 51 Tel : 1644-0379 Fax : 032-568-1321<br>
+       Copyright © 2020 REDAPPLE. All Rights Reserved.</li>
+       <li class="text2"><a href="#">개인정보취급방침</a></li>
+       <li class="text2"><a href="#">이메일무단수집거부</a></li>
+   </ul> 
+  </div>
+  </footer>
+ 
+
+</div><!--wrap/-->
+
+
+
+<script>
+	$(function(){
+		$('.page0').vegas({
+			slides:[
+				{src:'images/visual1.jpg'},				
+				{src:'images/visual2.jpg'}
+			],
+			delay:3500
+		});			
+	});
+</script>
+
+<script>
+    wow = new WOW(
+      {
+        animateClass: 'animated',
+        offset:       100
+      }
+    );
+    wow.init();
+  </script>
+</body>
+</html>

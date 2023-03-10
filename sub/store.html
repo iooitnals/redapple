@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>레드애플-스토어</title>
+    <link rel="stylesheet" href="../js/vegas/vegas.min.css">
+    <link rel="stylesheet" href="../css/animate-ex.css">
+    <link rel="shortcut icon"  type="../image/x-icon"  href="../logo_icon.ico">
+
+</head>
+
+<style>
+/*base*/
+body,ul,li,ol,dl,dt,dd,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}    
+body{font:normal 12px "나눔고딕", "Malgun Gothic", serif;}
+ul{list-style: none;}
+img{border:0;vertical-align:top;}
+a{text-decoration: none;} 
+
+#wrap{width:100%;overflow:hidden;}
+
+/*header*/
+
+.header{width:100%; height:170px; float:left; position:absolute; z-index:3; }
+.header .header_logo{width:30%; height:70px; float:left; margin: 10px;}
+.header .header_menu{width:56%; height:70px; float:left; margin: 2px;}
+.header .header_menu .gnb{width:600px; height:90px; float:left;}
+.header .header_menu .gnb>li{float:left;margin-right:40px;line-height:80px;}
+.header .header_menu .gnb>li:nth-child(1){margin-left:30px;}
+.header .header_menu .gnb>li>a{color:#000;font-size:16px;font-weight: bold;}
+.header .header_sns{width:10%; height:90px; float:left;}
+.header .header_sns .gnb2{float:left; margin-top:20px;} 
+.header .header_sns .gnb2>li{float:left;margin-right:10px;}
+
+/*contents*/
+.box1{width:100%; overflow:hidden; margin-top:50px;}
+.box1 .cont1{width:100%; height:400px;background:url(../images/menu_1.jpg) no-repeat; background-size:cover;}
+.box1 .cont1 h2{text-align: center; font-size:40px; margin:50px; padding-top:130px;color:#fff; }
+.box1 p{text-align: center;font-size:18px;margin-bottom:10px;color:#fff;font-weight: bold;}
+
+
+.box1 .cont2{width:100%; overflow:hidden; margin-top:50px; }
+.box1 .cont2 h3{font-size:30px; text-align: center; padding-top: 30px; }
+.box1 .cont2 .line{width:1100px;border:solid 1px #999; margin:50px auto;}
+.box1 .cont2 .line2{width:1100px;border:solid 2px red; margin:50px auto;}
+
+.box1 .cont2 .cont2-1{background:#fff;}
+
+.box1 .cont2 .cont2-1 .tg{width:1000px; margin:10px auto;text-align:center; margin-bottom: 100px; background:gray;}
+.box1 .cont2 .cont2-1 tr{height:50px;font-size: 12px; background:#fff;}
+.box1 .cont2 .cont2-1 .tg .tb1{width:20%;}
+.box1 .cont2 .cont2-1 .tg .tb2{width:60%;}
+.box1 .cont2 .cont2-1 .tg .tb3{width:20%;}
+
+
+/*footer*/
+.footer{width:100%;height:100px;background:#555;}
+.footer div{width:1100px; height:200px; margin:0 auto;}
+.footer ul{width:1200px; height:50px; text-align:left; float:left; }
+.footer ul li{float:left; margin:15px; color:#fff; }
+.footer ul .img{}
+.footer ul .text1{float:left; font-size:13px; line-height: 1.8; margin:20px 20px;}
+.footer ul .text2 a{float:left; font-size:13px; color:#fff; margin-top:8px;}
+.footer ul .text2 a:hover{float:left; font-size:13px; text-decoration:underline;}
+</style>
+<script src="../js/jquery-1.10.2.min.js"></script>
+<script>
+$(function(){
+
+ var tabBtn=$(".tab_btn>ul>li");  // tab_btn  li 클릭했을때
+ var tabCont=$(".tab_cont>div");  //tab_cont div 펼쳐보일때 보이는 내용
+
+ tabCont.hide().eq(0).show();  //박스전체 숨긴후 첫번째 박스만 보여주기
+
+ tabBtn.click(function(e){  //tab 버튼을 클릭했을때
+  e.preventDefault();  //클릭했을때 위로 올라가지 않게 클릭방지
+  var target=$(this); //버튼을 클릭했을때 어떤거를 클릭할줄 모르니 이벤트가 발생한 곳
+  var index=target.index(); //몇번째 버튼을 클릭했는지 모르니 인덱스번호로
+  tabBtn.removeClass("active");  //활성되있는 버튼 외는 지우기
+  target.addClass("active");  //타겟 클릭된 부분을 추가보여줌
+  tabCont.css("display","none");  //클릭된 부분외 문장은 숨기고
+  tabCont.eq(index).css("display","block"); //클릭된 부부만 보여주기
+ });
+
+});    
+</script>
+<body>
+<div id="wrap">    
+
+    <header class="header">
+        <div class="header_logo">
+            <h1><a href="../index.html"><img src="../images/logo.png"></a></h1>
+        </div>   
+        <div class="header_menu">
+         <ul class="gnb">
+             <li class="on"><a href="brand.html">BRAND</a></li>
+             <li><a href="franchise.html">FRANCHISE</a></li>
+                <li><a href="menu.html">MENU</a></li>
+                <li><a href="store.html">STORE</a></li>
+                <li><a href="community.html">COMMUNUTY</a></li>   
+         </ul>
+        </div>       
+        <div class="header_sns">
+           <ul class="gnb2">
+             <li><a href="https://www.instagram.com/redapple_coffee/"><img src="../images/sns_instagram.png" alt="instagram"></a></li>
+             <li><a href="https://www.facebook.com/redapplecoffeecom/"><img src="../images/sns_facebook.png" alt="facebook"></a></li>
+           </ul>
+        </div>
+    </header>  
+
+
+
+    <div class="box1">
+     <div class="cont1">
+         <h2>STORE</h2>
+         <p>레드애플이 선사하는 프리미엄 페스츄리 애플파이와<br>
+         스페셜티 커피를 만나보세요.</p>
+     </div><!--cont1/--> 
+
+                 
+
+     <div class="cont2">
+         <h3>매장정보</h3>
+         <p class="line"></p>         
+         <p class="line2"></p>
+
+
+        <div class="cont2-1">                                                                           
+            <table class="tg">
+             <tr>
+               <th class="tb1">레드애플 하남미사역점</th>
+               <th class="tb2">경기 하남시 미사강변중앙로 180 1015호</th>
+               <th class="tb3">031-791-9066</th>
+             </tr>
+
+             <tr>
+                <td class="tb1">레드애플 서울스퀘어점</th>
+                <td class="tb2">서울 중구 한강대로 416 지하1층 3호</th>
+                <td class="tb3">02-6456-8919</th>
+              </tr>
+              <tr>
+                <td class="tb1">레드애플 부산광복점</th>
+                <td class="tb2">부산광역시 중구 중앙대로 2 롯데백화점광복점 B1층</th>
+                <td class="tb3">0507-1420-4245</th>
+              </tr>
+              <tr>
+                <td class="tb1">레드애플 을지트윈타워점	</th>
+                <td class="tb2">서울특별시 중구 을지로 170, B112호 레드애플</th>
+                <td class="tb3">02-3706-7210</th>
+              </tr>
+              <tr>
+                <td class="tb1">레드애플 상암MBC점</th>
+                <td class="tb2">서울특별시 마포구 성암로 267 MBCMALL B110호</th>
+                <td class="tb3">02-308-5662</th>
+              </tr>
+              <tr>
+                <td class="tb1">레드애플 연남점</th>
+                <td class="tb2">서울특별시 마포구 동교로46길 30 1층</th>
+                <td class="tb3">02-332-1321</th>
+              </tr>
+              <tr>
+                <td class="tb1">레드애플 명동점	</th>
+                <td class="tb2">서울특별시 중구 남대문로 81 지하1층</th>
+                <td class="tb3">070-4353-3650</th>
+              </tr>
+              <tr>
+                <td class="tb1">레드애플 부산점</th>
+                <td class="tb2">부산광역시 해운대구 센텀남대로 35 지하1층 푸드마켓</th>
+                <td class="tb3">070-4353-3648	</th>
+              </tr>
+            </table>
+        </div> <!--cont2-1/-->
+     </div><!--cont2/-->
+    </div><!--box1/-->   
+
+
+
+    <footer class="footer">
+    <div>
+     <ul>
+         <li class="img"><img src="../images/f_logo.png"><li>   
+         <li class="text1">상호 : (주)레드애플 대표자 : 유태익 주소 : 인천 서구 소담2로 51 Tel : 1644-0379 Fax : 032-568-1321<br>
+         Copyright © 2020 REDAPPLE. All Rights Reserved.</li>
+         <li class="text2"><a href="#">개인정보취급방침</a></li>
+         <li class="text2"><a href="#">이메일무단수집거부</a></li>
+     </ul> 
+    </div>
+    </footer>
+   
+</div><!--wrap/-->    
+</body>
+</html>

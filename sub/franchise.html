@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>레드애플-프랜차이즈</title>
+    <link rel="stylesheet" href="../js/vegas/vegas.min.css">
+    <link rel="stylesheet" href="../css/animate-ex.css">
+    <link rel="shortcut icon"  type="../image/x-icon"  href="../logo_icon.ico">
+</head>
+
+<style>
+/*base*/
+body,ul,li,ol,dl,dt,dd,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}    
+body{font:normal 12px "제주고딕", "Malgun Gothic", serif;}
+ul{list-style: none;}
+img{border:0;vertical-align:top;}
+a{text-decoration: none;} 
+
+#wrap{width:100%;overflow:hidden;}
+
+/*header*/
+
+.header{width:100%; height:170px; float:left; position:absolute; z-index:3; }
+.header .header_logo{width:30%; height:70px; float:left; margin: 10px;}
+.header .header_menu{width:56%; height:70px; float:left; margin: 2px;}
+.header .header_menu .gnb{width:600px; height:90px; float:left;}
+.header .header_menu .gnb>li{float:left;margin-right:40px;line-height:80px;}
+.header .header_menu .gnb>li:nth-child(1){margin-left:30px;}
+.header .header_menu .gnb>li>a{color:#000;font-size:16px;font-weight: bold;}
+.header .header_sns{width:10%; height:90px; float:left;}
+.header .header_sns .gnb2{float:left; margin-top:20px;} 
+.header .header_sns .gnb2>li{float:left;margin-right:10px;}
+
+
+/*contents*/
+.box1{width:100%; overflow:hidden; margin-top:50px;}
+.box1 .cont1{width:100%; height:400px;background: url(../images/cont5-2.png) no-repeat;}
+.box1 .cont1 h2{text-align: center; font-size:40px; margin:50px; padding-top:130px;color:#fff; }
+.box1 p{text-align: center;font-size:18px;margin-bottom:10px;color:#fff;font-weight: bold;}
+
+.box1 .tab_menu{}
+.box1 .tab_menu .tab_btn{width:100%;height:55px;background:rgba(0,0,0,0.5);z-index: 3;position:absolute;top:472px;left:50%;transform: translate(-50%,-50%);}
+.box1 .tab_menu .tab_btn li{float:left;width:33%;height:50px;text-align: center;line-height: 1.5; padding-top:10px ;}
+.box1 .tab_menu .tab_btn li a{font-size:20px;color:#fff;}
+.box1 .tab_menu .tab_btn li:hover a{text-decoration: underline;color:red;}
+.box1 .tab_menu .tab_btn li.active a{text-decoration: underline;color:red;}
+
+.box1 .tab_cont{width:100%; overflow:hidden; margin-top:50px;}
+.box1 .tab_cont .tab1 h3{font-size:30px; text-align: center; padding-top: 30px;}
+.box1 .tab_cont .tab1 .line{width:1100px;border:solid 1px #999;  margin:50px auto;}
+
+.box1 .tab_cont .cont1-1{text-align: center; padding-top: 30px;}
+.box1 .tab_cont .cont1-2{text-align: center; padding-top: 30px;}
+
+.box1 .tab_cont .cont1-3 p{text-align:left; color:#666; font-size: 20px; line-height: 1.8; text-align: center; padding:50px}
+.box1 .tab_cont .cont1-3 .red{font-size: 22px;color:red;font-weight: bold;}
+.box1 .tab_cont .cont1-3 span{font-weight:bold; color:black;}
+
+
+.box1 .tab_cont .tab2 h3{font-size:30px; text-align: center; padding-top: 30px;}
+.box1 .tab_cont .tab2 .line{width:1100px;border:solid 1px #999;  margin:50px auto;}
+
+.box1 .tab_cont .tab2{}
+.box1 .tab_cont .tab2 table{width:600px; margin-left:280px; }
+.box1 .tab_cont .tab2 table td{float:left; margin:5px;font-size: 14px;}
+.box1 .tab_cont .tab2 table th{width:100px; margin:5px;}
+.box1 .tab_cont .tab2 table th .req{color:red;}
+.box1 .tab_cont .tab2 .cont2-1{width:1100px; margin:40px auto; }
+.box1 .tab_cont .tab2 img{margin-left:5px; margin-bottom: 200px;}
+.box1 .tab_cont .tab2 .buttons{text-align: center; margin: 30px 0;}
+.box1 .tab_cont .tab2 .buttons input{width:200px;height:42px; border:1px solid #fff; text-align: center; margin-bottom: 200px;
+    background:red;border:none;transition:all 0.5s;color:#fff;font-size:15px;cursor: pointer;}
+.box1 .tab_cont .tab2 .buttons input:hover{background:#555;}
+
+.box1 .tab_cont .tab3{text-align:center;}
+.box1 .tab_cont .tab3 h3{font-size:30px; text-align: center; padding-top: 30px;}
+.box1 .tab_cont .tab3 .line{width:1100px;border:solid 1px #999;  margin:50px auto;}
+.box1 .tab_cont .tab3 .text{font-size: 22px;color:#555;font-weight: bold; margin:50px;}
+.box1 .tab_cont .tab3 input{width:200px;height:42px; border:1px solid #fff; text-align: center; margin-bottom: 200px;
+    background:red;border:none;transition:all 0.5s;color:#fff;font-size:15px;cursor: pointer;}
+.box1 .tab_cont .tab3 input:hover{background:#555;}
+
+/*footer*/
+.footer{width:100%;height:100px;background:#555;}
+.footer div{width:1100px; height:200px; margin:0 auto;}
+.footer ul{width:1200px; height:50px; text-align:left; float:left; }
+.footer ul li{float:left; margin:15px; color:#fff; }
+.footer ul .img{}
+.footer ul .text1{float:left; font-size:13px; line-height: 1.8; margin:20px 20px;}
+.footer ul .text2 a{float:left; font-size:13px; color:#fff; margin-top:8px;}
+.footer ul .text2 a:hover{float:left; font-size:13px; text-decoration:underline;}
+</style>
+<script src="../js/jquery-1.10.2.min.js"></script>
+<script>
+$(function(){
+
+ var tabBtn=$(".tab_btn>ul>li");  // tab_btn  li 클릭했을때
+ var tabCont=$(".tab_cont>div");  //tab_cont div 펼쳐보일때 보이는 내용
+
+ tabCont.hide().eq(0).show();  //박스전체 숨긴후 첫번째 박스만 보여주기
+
+ tabBtn.click(function(e){  //tab 버튼을 클릭했을때
+  e.preventDefault();  //클릭했을때 위로 올라가지 않게 클릭방지
+  var target=$(this); //버튼을 클릭했을때 어떤거를 클릭할줄 모르니 이벤트가 발생한 곳
+  var index=target.index(); //몇번째 버튼을 클릭했는지 모르니 인덱스번호로
+  tabBtn.removeClass("active");  //활성되있는 버튼 외는 지우기
+  target.addClass("active");  //타겟 클릭된 부분을 추가보여줌
+  tabCont.css("display","none");  //클릭된 부분외 문장은 숨기고
+  tabCont.eq(index).css("display","block"); //클릭된 부부만 보여주기
+ });
+
+});    
+</script>
+<body>
+<div id="wrap">    
+
+    <header class="header">
+        <div class="header_logo">
+            <h1><a href="../index.html"><img src="../images/logo.png"></a></h1>
+        </div>   
+        <div class="header_menu">
+         <ul class="gnb">
+             <li class="on"><a href="brand.html">BRAND</a></li>
+             <li><a href="franchise.html">FRANCHISE</a></li>
+                <li><a href="menu.html">MENU</a></li>
+                <li><a href="store.html">STORE</a></li>
+                <li><a href="community.html">COMMUNUTY</a></li>   
+         </ul>
+        </div>       
+        <div class="header_sns">
+           <ul class="gnb2">
+             <li><a href="#"><img src="../images/sns_instagram.png"></a></li>
+             <li><a href="#"><img src="../images/sns_facebook.png"></a></li>
+           </ul>
+        </div>
+    </header>  
+
+
+
+
+    <div class="box1">
+     <div class="cont1">
+         <h2>FRANCHISE</h2>
+         <p>레드애플이 선사하는 프리미엄 페스츄리 애플파이와<br>
+         스페셜티 커피를 만나보세요.</p>
+     </div><!--cont1/--> 
+
+    
+     <div class="tab_menu">
+         <div class="tab_btn">
+         <ul>
+          <li class="active"><a href="#">가맹절차&비용</a></li>   
+          <li><a href="#">가맹문의</a></li>   
+          <li><a href="#">FAQ</a></li>   
+         </ul>
+         </div> <!--tab_btn/--> 
+     </div><!--tab_menu/--> 
+
+
+     <div class="tab_cont">
+      <div class="tab1">
+         <h3>가맹절차&비용</h3>
+         <p class="line"></p>
+         
+         <div class="cont1-1"><img src="../images/step.jpg"></div><!--cont1-1/--> 
+         <div class="cont1-2"><img src="../images/contact_img.jpg"></div><!--cont1-2/--> 
+         <div class="cont1-3">
+         <p>“가맹문의 시 <span>본사 담당자와의 상담을 필수</span>로 하며,<br>
+          <span>점포특성 및 상황에 따라 변동</span>될 수 있음을 알려드립니다.”<br>
+          ※자세한 개설문의는 본사 홈페이지 신청 또는 <span class="red">대표전화 1644-0379</span>으로 문의주세요.<br></p> 
+         </div><!--cont1-3/--> 
+       </div><!--tab1/--> 
+
+     <div class="tab2">
+         <h3>가맹문의</h3>
+         <p class="line"></p>
+         <div class="cont2-1">
+            <table>                					
+             <tr>
+              <th><label>이　　름<span class="req">*</span></label></th><td>
+              <input type="text" class="input" style="width:120px;"></td>
+             </tr>
+
+             <tr>
+             <th><label >연 락 처 <span class="req">*</span></label></th>
+             <td><input style="width:85px;" title="연락처 앞자리" required> -
+                 <input style="width:85px;" title="연락처 중간자리" required> -
+                 <input style="width:85px;" title="연락처 뒷자리" required>
+             </td>
+             </tr>
+
+             <tr> 
+             <th><label>이 메 일<span class="req">*</span></label></th>
+             <td>
+             <input id="email_id" name="email_id" class="input" title="전자메일아이디" type="text" value="" style="width:100px;" /> @
+             <input id="email_domain" name="email_domain" class="input" title="전자메일계정" type="text" value="" style="width:100px;" />
+             </td>
+             </tr>
+
+             <tr>
+             <th><label>창업희망지역<span class="req">*</span></label></th>
+             <td>
+             <select title="광역시/도 선택" style="width:120px;" class="select">
+              <option value="">광역시/도 선택</option>              
+                  <option value="0" >강원</option>                            
+                  <option value="1" >경기</option>
+                  <option value="2" >경남</option>
+                  <option value="3" >경북</option>           
+                  <option value="4" >광주</option>              
+                  <option value="5" >대구</option>              
+                  <option value="6" >대전</option>              
+                  <option value="7" >부산</option>              
+                  <option value="8" >서울</option>              
+                  <option value="9" >세종</option>
+                  <option value="10" >울산</option>
+                  <option value="11" >인천</option>
+                  <option value="12" >전남</option>
+                  <option value="13" >전북</option>
+                  <option value="14" >제주</option>
+                  <option value="15" >충남</option>
+                  <option value="16" >충북</option>   
+             </select>
+
+                <tr>
+                 <th>점 포 유 무 <span class="req">*</span></th>
+                 <td>
+                 <span class="item"><input type="radio"> <label >유</label></span>
+                 <span class="item"><input type="radio"> <label >무</label></span>
+                 </td>
+                </tr>
+
+                <tr>
+                <th><label for="memo" >내용</label></th>
+                <td>
+                <textarea row="10"  cols="30" name="contents"  style="width:380px;height:160px;"></textarea>
+                </td>
+                </tr>
+
+            </table>
+
+            <div class="buttons"><input type="submit" value="문의하기"  class="buttons"></div>
+         </div> <!--cont2-1/-->
+        </div><!--tab2/-->
+
+     <div class="tab3">
+         <h3>FAQ</h3>
+         <p class="line"></p>           
+         <p class="text">아직 질문이 없습니다.</p>
+         <div class="buttons"><input type="submit" value="문의하기" ></div>
+      </div><!--tab3/-->      
+     </div><!--tab_cont/-->
+    </div><!--box1/-->    
+
+
+    <footer class="footer">
+    <div>
+     <ul>
+         <li class="img"><img src="../images/f_logo.png"><li>   
+         <li class="text1">상호 : (주)레드애플 대표자 : 유태익 주소 : 인천 서구 소담2로 51 Tel : 1644-0379 Fax : 032-568-1321<br>
+         Copyright © 2020 REDAPPLE. All Rights Reserved.</li>
+         <li class="text2"><a href="#">개인정보취급방침</a></li>
+         <li class="text2"><a href="#">이메일무단수집거부</a></li>
+     </ul> 
+    </div>
+    </footer>
+   
+</div><!--wrap/-->    
+</body>
+</html>
